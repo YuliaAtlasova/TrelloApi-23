@@ -12,12 +12,12 @@ import java.util.List;
 
 import static trello.demo.utils.TestData.testData;
 
-public class OneBoardPage extends BasePage{
+public class CardOnListPage extends BasePage{
 
     private final String PAGE_URL = testData().getProperty("trelloBaseUiUrl") + testData().getProperty("userName") +
             "/boards";
 
-    public OneBoardPage(WebDriver driver)
+    public CardOnListPage(WebDriver driver)
     {
         super(driver);
         PageFactory.initElements(this.driver, this);
@@ -46,7 +46,7 @@ public class OneBoardPage extends BasePage{
         return "//div[contains (@class, 'list-header') and textarea[contains(text(), '" + listName + "')]]";
     }
     @Override
-    public OneBoardPage openPage()
+    public CardOnListPage openPage()
     {
         driver.navigate().to(PAGE_URL);
         return this;

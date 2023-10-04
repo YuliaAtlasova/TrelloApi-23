@@ -2,36 +2,38 @@ package trello.demo.apiSteps;
 
 import io.restassured.http.Method;
 import io.restassured.response.Response;
+import trello.demo.entities.Card;
 import trello.demo.entities.List;
+import trello.demo.services.CardService;
 import trello.demo.services.ListService;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
 import static trello.demo.specifications.ResponseSpecProvider.successJsonResponse;
 
-public class ListApiSteps {
+public class CardApiSteps {
 
-    public static List createList(String boardId) {
+    public static Card createCard(String listId) {
         String name = randomAlphanumeric(10, 20);
-        return createListWithName(boardId, name);
+        return createCardWithName(listId, name);
     }
 
-    public static List createListWithName(String boardId, String listName){
-        Response resp = ListService
+    public static Card createCardWithName(String listId, String listName){
+        Response resp = CardService
                 .requestBuilder()
                 .setName(listName)
-                .setBoardId(boardId)
+                .setListId(listId)
                 .setId("")
                 .setMethod(Method.POST)
                 .build().sendRequest();
         resp.then().spec(successJsonResponse());
-        List list = ListService.extractList(resp);
-        return list;
+        Card card = CardService.extractCard(resp);
+        return card;
     }
 
-    public static void deleteList(String listId) {
-        ListService
+    public static void deleteCard(String cardId) {
+        CardService
                 .requestBuilder()
-                .setId(listId)
+                .setId(cardId)
                 .setMethod(Method.DELETE)
                 .build()
                 .sendRequest();

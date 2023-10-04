@@ -27,7 +27,7 @@ public abstract class BaseServiceObject {
         this.url = url;
         this.method = method;
         this.pathParams = pathParams;
-        this.pathParams.putIfAbsent("id", "");
+//        this.pathParams.putIfAbsent("id", "");
         this.queryParams = queryParams;
         this.queryBody = body;
     }

@@ -23,6 +23,7 @@ public class BoardApiSteps {
                 .requestBuilder()
                 .setMethod(Method.POST)
                 .setName(randomAlphanumeric(10, 20))
+                .setId("")
                 .setColor(EnumUtils.randomValue(Colors.class).name())
                 .build()
                 .sendRequest();

@@ -1,6 +1,4 @@
 package trello.demo.entities;
-
-//@GsonIgnoreProperties(ignoreUnknown = true)
 public class Board {
 
     private String id;
