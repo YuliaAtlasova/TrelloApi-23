@@ -1,7 +1,7 @@
-import org.junit.After;
 import org.openqa.selenium.WebDriver;
+import trello.demo.driver.DriverSingleton;
 import org.junit.Before;
-import trello.demo2.driver.DriverSingleton;
+import org.junit.After;
 
 public class BaseUiTest {
     protected WebDriver driver;
