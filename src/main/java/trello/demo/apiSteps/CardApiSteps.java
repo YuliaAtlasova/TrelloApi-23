@@ -18,15 +18,14 @@ public class CardApiSteps {
     }
 
     public static Card createCardWithName(String listId, String listName){
-        Response resp = CardService
+        Response response = CardService
                 .requestBuilder()
                 .setName(listName)
                 .setListId(listId)
-                .setId("")
                 .setMethod(Method.POST)
                 .build().sendRequest();
-        resp.then().spec(successJsonResponse());
-        Card card = CardService.extractCard(resp);
+        response.then().spec(successJsonResponse());
+        Card card = CardService.extractCard(response);
         return card;
     }
 

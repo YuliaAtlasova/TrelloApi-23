@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class CardService extends BaseServiceObject {
 
-    private static final String cardUrl = "cards/?idList={id}";
+    private static final String cardUrl = "cards/";
 
     public CardService(String url,
                        Method method,

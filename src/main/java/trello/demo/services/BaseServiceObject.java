@@ -20,14 +20,13 @@ public abstract class BaseServiceObject {
     private Object queryBody;
 
     public BaseServiceObject(String url,
-                                 Method method,
-                                 Map<String, String> pathParams,
-                                 Map<String, String> queryParams,
-                                Object body) {
+                             Method method,
+                             Map<String, String> pathParams,
+                             Map<String, String> queryParams,
+                             Object body) {
         this.url = url;
         this.method = method;
         this.pathParams = pathParams;
-//        this.pathParams.putIfAbsent("id", "");
         this.queryParams = queryParams;
         this.queryBody = body;
     }
@@ -53,9 +52,9 @@ public abstract class BaseServiceObject {
             this.queryParams.put(name, value);
             return (B) this;
         }
-        
+
         protected B addQueryBody(Object value) {
-            this.queryBody=value;
+            this.queryBody = value;
             return (B) this;
         }
 
@@ -64,14 +63,12 @@ public abstract class BaseServiceObject {
     }
 
     public Response sendRequest() {
-        return sendRequest(RequestSpecProvider.BASE_SPEC);
-    }
-
-    private Response sendRequest(RequestSpecification spec) {
         queryParams.put("requestId", String.valueOf(new Random().nextLong()));
+        for (String paramName : pathParams.keySet())
+            url = url + '{' + paramName + '}';
         return RestAssured
                 .given()
-                .spec(spec)
+                .spec(RequestSpecProvider.BASE_SPEC)
                 .pathParams(pathParams)
                 .queryParams(queryParams)
                 .body(queryBody)
@@ -83,6 +80,4 @@ public abstract class BaseServiceObject {
     public static <D> D extract(Response response, Class<D> dataClass) {
             return new Gson().fromJson(response.asString().trim(), dataClass);
     }
-
-
 }

@@ -13,37 +13,39 @@ import trello.demo.utils.EnumUtils;
 import java.util.List;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
+import static trello.demo.specifications.ResponseSpecProvider.successJsonResponse;
 
 public class BoardApiSteps {
 
     public static final String ALL_BOARDS_URL = "/members/me/boards";
 
     public static Board createBoard() {
-         Response resp = BoardService
+         Response response = BoardService
                 .requestBuilder()
                 .setMethod(Method.POST)
                 .setName(randomAlphanumeric(10, 20))
-                .setId("")
                 .setColor(EnumUtils.randomValue(Colors.class).name())
                 .build()
                 .sendRequest();
-         return BoardService.extractBoard(resp);
+         return BoardService.extractBoard(response);
     }
 
     public static Board getBoard(String boardId) {
-        Response resp = BoardService
+        Response response = BoardService
                 .requestBuilder()
-                .setId(boardId)
+                .setPathId(boardId)
                 .build().sendRequest();
-                return  BoardService.extractBoard(resp);
+        response.then().spec(successJsonResponse());
+        return  BoardService.extractBoard(response);
     }
 
     public static void deleteBoard(String boardId) {
-        BoardService
+        Response response = BoardService
                 .requestBuilder()
                 .setMethod(Method.DELETE)
-                .setId(boardId)
+                .setPathId(boardId)
                 .build().sendRequest();
+        response.then().spec(successJsonResponse());
     }
 
     public static List<Board> getAllBoards() {
@@ -56,12 +58,7 @@ public class BoardApiSteps {
     }
 
     public static void deleteAllBoards() {
-        getAllBoards().forEach(b -> BoardService
-                .requestBuilder()
-                .setId(b.getId())
-                .setMethod(Method.DELETE)
-                .build()
-                .sendRequest());
+        getAllBoards().forEach(b -> deleteBoard(b.getId()));
     }
 
 }

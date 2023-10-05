@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class BoardService extends BaseServiceObject {
 
-    private static final String boardUrl = "/boards/{id}";
+    private static final String boardUrl = "/boards/";
 
     public BoardService(String url,
                         Method method,
@@ -25,8 +25,12 @@ public class BoardService extends BaseServiceObject {
 
     public static class BoardRequestBuilder extends ApiRequestBuilder<BoardRequestBuilder, BoardService> {
 
-        public BoardRequestBuilder setId(String id) {
+        public BoardRequestBuilder setPathId(String id) {
             addPathParam("id", id);
+            return this;
+        }
+        public BoardRequestBuilder setQueryId(String id) {
+            addQueryParam("id", id);
             return this;
         }
 

@@ -15,7 +15,7 @@ import trello.demo.pages.OneBoardPage;
 
 import static trello.demo.utils.TestData.testData;
 
-public class TrelloCardOnListTest extends BaseUiTest{
+public class TrelloCardOnListTest extends BaseUiTest {
 
     Board testBoard;
     List testList;
@@ -36,16 +36,13 @@ public class TrelloCardOnListTest extends BaseUiTest{
 
     @Test
     public void EmptyTrelloCard() {
+        testBoard = BoardApiSteps.getBoard(testBoard.getId());
         Card myCard  = CardApiSteps.createCard(testList.getId());
         loginPage.openPage();
         BoardsPage boards = loginPage.login(testData().getProperty("userLogin"), testData().getProperty("userPassword"));
         OneBoardPage oneBoard = boards.openBoardByName(testBoard.getName());
         ListOnBoardPage myList = oneBoard.getListByName(testList.getName());
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        //test implementation is in progress yet. I will fill card with details and check details on UI.
     }
 
 

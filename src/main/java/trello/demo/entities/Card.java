@@ -5,15 +5,12 @@ import java.util.Date;
 
 public class Card{
     public String id;
-    public String address;
-    public Badges badges;
     public ArrayList<String> checkItemStates;
     public boolean closed;
     public String coordinates;
     public String creationMethod;
     public Date dateLastActivity;
     public String desc;
-    public Date descData;
     public String due;
     public String dueReminder;
     public String email;
@@ -34,5 +31,4 @@ public class Card{
     public String shortUrl;
     public boolean subscribed;
     public String url;
-//    public Cover cover;
 }

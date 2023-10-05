@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class ListService extends BaseServiceObject {
 
-    private static final String listUrl = "/list/{id}";
+    private static final String listUrl = "/list/";
 
     public ListService(String url,
                        Method method,

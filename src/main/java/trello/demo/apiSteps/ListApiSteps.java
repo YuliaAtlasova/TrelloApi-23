@@ -20,12 +20,10 @@ public class ListApiSteps {
                 .requestBuilder()
                 .setName(listName)
                 .setBoardId(boardId)
-                .setId("")
                 .setMethod(Method.POST)
                 .build().sendRequest();
         resp.then().spec(successJsonResponse());
-        List list = ListService.extractList(resp);
-        return list;
+        return ListService.extractList(resp);
     }
 
     public static void deleteList(String listId) {
