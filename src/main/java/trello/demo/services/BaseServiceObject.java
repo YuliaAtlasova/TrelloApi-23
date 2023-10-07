@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import trello.demo.specifications.RequestSpecProvider;
 
 import java.util.HashMap;
@@ -31,6 +30,26 @@ public abstract class BaseServiceObject {
         this.queryBody = body;
     }
 
+    public static <D> D extract(Response response, Class<D> dataClass) {
+        return new Gson().fromJson(response.asString().trim(), dataClass);
+    }
+
+    public Response sendRequest() {
+        queryParams.put("requestId", String.valueOf(new Random().nextLong()));
+        for (String paramName : pathParams.keySet())
+            url = url + '{' + paramName + '}';
+        return RestAssured
+                .given()
+                .spec(RequestSpecProvider.BASE_SPEC)
+                .pathParams(pathParams)
+                .queryParams(queryParams)
+                .body(queryBody)
+                .log().all()
+                .request(method, url)
+                .prettyPeek();
+    }
+
+    @SuppressWarnings("unchecked")
     public abstract static class ApiRequestBuilder<B extends ApiRequestBuilder<B, T>, T extends BaseServiceObject> {
 
         protected Method method = Method.GET;
@@ -59,25 +78,5 @@ public abstract class BaseServiceObject {
         }
 
         public abstract T build();
-
-    }
-
-    public Response sendRequest() {
-        queryParams.put("requestId", String.valueOf(new Random().nextLong()));
-        for (String paramName : pathParams.keySet())
-            url = url + '{' + paramName + '}';
-        return RestAssured
-                .given()
-                .spec(RequestSpecProvider.BASE_SPEC)
-                .pathParams(pathParams)
-                .queryParams(queryParams)
-                .body(queryBody)
-                .log().all()
-                .request(method, url)
-                .prettyPeek();
-    }
-
-    public static <D> D extract(Response response, Class<D> dataClass) {
-            return new Gson().fromJson(response.asString().trim(), dataClass);
     }
 }

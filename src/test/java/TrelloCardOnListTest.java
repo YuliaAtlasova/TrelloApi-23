@@ -13,8 +13,6 @@ import trello.demo.pages.ListOnBoardPage;
 import trello.demo.pages.LoginPage;
 import trello.demo.pages.OneBoardPage;
 
-import static trello.demo.utils.TestData.testData;
-
 public class TrelloCardOnListTest extends BaseUiTest {
 
     Board testBoard;
@@ -22,14 +20,14 @@ public class TrelloCardOnListTest extends BaseUiTest {
     LoginPage loginPage;
 
     @Before
-    public void createBoardAndList(){
+    public void createBoardAndList() {
         testBoard = BoardApiSteps.createBoard();
         testList = ListApiSteps.createList(testBoard.getId());
         loginPage = new LoginPage(driver);
     }
 
     @After
-    public void deleteAllBoards(){
+    public void deleteAllBoards() {
         DriverSingleton.closeDriver();
         BoardApiSteps.deleteBoard(testBoard.getId());
     }
@@ -37,13 +35,13 @@ public class TrelloCardOnListTest extends BaseUiTest {
     @Test
     public void EmptyTrelloCard() {
         testBoard = BoardApiSteps.getBoard(testBoard.getId());
-        Card myCard  = CardApiSteps.createCard(testList.getId());
+        Card myCard = CardApiSteps.createCard(testList.getId());
+
         loginPage.openPage();
-        BoardsPage boards = loginPage.login(testData().getProperty("userLogin"), testData().getProperty("userPassword"));
+        BoardsPage boards = loginPage.login(LOGIN, PASSWORD);
         OneBoardPage oneBoard = boards.openBoardByName(testBoard.getName());
         ListOnBoardPage myList = oneBoard.getListByName(testList.getName());
+
         //test implementation is in progress yet. I will fill card with details and check details on UI.
     }
-
-
 }

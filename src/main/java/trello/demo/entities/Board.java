@@ -1,9 +1,9 @@
 package trello.demo.entities;
-public class Board {
 
+public class Board {
     private String id;
     private String name;
-    private String desc = "";
+    private String desc;
     private boolean closed;
 
     public Board() {
@@ -19,16 +19,38 @@ public class Board {
     public String getId() {
         return id;
     }
+
+    public Board setId(String id) {
+        this.id = id;
+        return this;
+    }
+
     public String getName() {
         return name;
     }
+
+    public Board setName(String name) {
+        this.name = name;
+        return this;
+    }
+
     public String getDesc() {
         return desc;
     }
+
+    public Board setDesc(String desc) {
+        this.desc = desc;
+        return this;
+    }
+
     public boolean isClosed() {
         return closed;
     }
 
+    public Board setClosed(boolean closed) {
+        this.closed = closed;
+        return this;
+    }
 
     @Override
     public String toString() {
@@ -38,25 +60,5 @@ public class Board {
                 + ", desc='" + desc + '\''
                 + ", closed=" + closed
                 + '}';
-    }
-
-    public Board setId(String id) {
-        this.id = id;
-        return this;
-    }
-
-    public Board setName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public Board setDesc(String desc) {
-        this.desc = desc;
-        return this;
-    }
-
-    public Board setClosed(boolean closed) {
-        this.closed = closed;
-        return this;
     }
 }

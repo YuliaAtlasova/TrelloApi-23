@@ -20,14 +20,14 @@ public class BoardApiSteps {
     public static final String ALL_BOARDS_URL = "/members/me/boards";
 
     public static Board createBoard() {
-         Response response = BoardService
+        Response response = BoardService
                 .requestBuilder()
                 .setMethod(Method.POST)
                 .setName(randomAlphanumeric(10, 20))
                 .setColor(EnumUtils.randomValue(Colors.class).name())
                 .build()
                 .sendRequest();
-         return BoardService.extractBoard(response);
+        return BoardService.extractBoard(response);
     }
 
     public static Board getBoard(String boardId) {
@@ -36,7 +36,7 @@ public class BoardApiSteps {
                 .setPathId(boardId)
                 .build().sendRequest();
         response.then().spec(successJsonResponse());
-        return  BoardService.extractBoard(response);
+        return BoardService.extractBoard(response);
     }
 
     public static void deleteBoard(String boardId) {
@@ -54,11 +54,11 @@ public class BoardApiSteps {
                 .spec(RequestSpecProvider.BASE_SPEC)
                 .when()
                 .get(ALL_BOARDS_URL)
-                .as(new TypeRef<List<Board>>() { });
+                .as(new TypeRef<List<Board>>() {
+                });
     }
 
     public static void deleteAllBoards() {
         getAllBoards().forEach(b -> deleteBoard(b.getId()));
     }
-
 }

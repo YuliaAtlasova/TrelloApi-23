@@ -1,7 +1,6 @@
 package trello.demo.entities;
 
-public class Badges{
-//    public AttachmentsByType attachmentsByType;
+public class Badges {
     public boolean location;
     public int votes;
     public boolean viewingMemberVoted;

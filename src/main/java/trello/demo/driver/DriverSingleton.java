@@ -6,7 +6,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class DriverSingleton {
     private static WebDriver driver;
 
-    private DriverSingleton() {}
+    private DriverSingleton() {
+    }
 
     public static WebDriver getDriver() {
         if (driver == null) {

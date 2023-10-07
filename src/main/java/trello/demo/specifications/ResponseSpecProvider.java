@@ -2,7 +2,6 @@ package trello.demo.specifications;
 
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.specification.ResponseSpecification;
-import org.apache.http.HttpHeaders;
 import org.apache.http.HttpStatus;
 
 import static io.restassured.http.ContentType.JSON;

@@ -23,12 +23,17 @@ public class BoardService extends BaseServiceObject {
         return new BoardRequestBuilder();
     }
 
+    public static Board extractBoard(Response response) {
+        return extract(response, Board.class);
+    }
+
     public static class BoardRequestBuilder extends ApiRequestBuilder<BoardRequestBuilder, BoardService> {
 
         public BoardRequestBuilder setPathId(String id) {
             addPathParam("id", id);
             return this;
         }
+
         public BoardRequestBuilder setQueryId(String id) {
             addQueryParam("id", id);
             return this;
@@ -38,6 +43,7 @@ public class BoardService extends BaseServiceObject {
             addQueryParam("name", name);
             return this;
         }
+
         public BoardRequestBuilder setColor(String color) {
             addQueryParam("prefs_background", color.toLowerCase(Locale.ROOT));
             return this;
@@ -58,9 +64,4 @@ public class BoardService extends BaseServiceObject {
             return new BoardService(boardUrl, method, pathParams, queryParams, queryBody);
         }
     }
-
-    public static Board extractBoard(Response response) {
-        return extract(response, Board.class);
-    }
-
 }

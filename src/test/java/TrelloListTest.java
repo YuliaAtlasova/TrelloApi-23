@@ -11,8 +11,7 @@ import trello.demo.pages.LoginPage;
 import trello.demo.pages.OneBoardPage;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
-import static org.junit.Assert.assertTrue;
-import static trello.demo.utils.TestData.testData;
+import static org.junit.Assert.assertEquals;
 
 public class TrelloListTest extends BaseUiTest {
 
@@ -36,12 +35,16 @@ public class TrelloListTest extends BaseUiTest {
     public void longListNameShouldBeVisible() {
         String longName = randomAlphanumeric(512);
         testList = ListApiSteps.createListWithName(testBoard.getId(), longName);
+
         loginPage.openPage();
-        BoardsPage boards = loginPage.login(testData().getProperty("userLogin"), testData().getProperty("userPassword"));
+        BoardsPage boards = loginPage.login(LOGIN, PASSWORD);
         OneBoardPage oneBoard = boards.openBoardByName(testBoard.getName());
         oneBoard.getListByName(testList.getName());
         int myListsNumber = oneBoard.getNumberOfListsByName(testList.getName());
-        assertTrue("Expect to see the list with name: " + longName, myListsNumber == 1);
+
+        assertEquals("Expect to see the list with name: " + longName,
+                1,
+                myListsNumber);
     }
 
     @Test
@@ -50,10 +53,14 @@ public class TrelloListTest extends BaseUiTest {
         testList = ListApiSteps.createListWithName(testBoard.getId(), listName);
         testList = ListApiSteps.createListWithName(testBoard.getId(), listName);
         testList = ListApiSteps.createListWithName(testBoard.getId(), listName);
+
         loginPage.openPage();
-        BoardsPage boards = loginPage.login(testData().getProperty("userLogin"), testData().getProperty("userPassword"));
+        BoardsPage boards = loginPage.login(LOGIN, PASSWORD);
         OneBoardPage oneBoard = boards.openBoardByName(testBoard.getName());
         int myListsNumber = oneBoard.getNumberOfListsByName(testList.getName());
-        assertTrue("Expect to get 3 list with name: " + listName + ", but got " + myListsNumber, myListsNumber == 3);
+
+        assertEquals("Expect to get 3 list with name: " + listName + ", but got " + myListsNumber,
+                3,
+                myListsNumber);
     }
 }
