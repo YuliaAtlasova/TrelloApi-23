@@ -1,20 +1,22 @@
+import org.junit.After;
+import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import trello.demo.driver.DriverSingleton;
-import org.junit.Before;
-import org.junit.After;
+
+import static trello.demo.utils.TestData.testData;
 
 public class BaseUiTest {
     protected WebDriver driver;
+    public static final String LOGIN = testData().getProperty("userLogin");
+    public static final String PASSWORD = testData().getProperty("userPassword");
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         driver = DriverSingleton.getDriver();
     }
 
     @After
-    public void tearDown()
-    {
+    public void tearDown() {
         DriverSingleton.closeDriver();
     }
 }

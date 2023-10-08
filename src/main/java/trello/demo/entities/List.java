@@ -1,10 +1,9 @@
 package trello.demo.entities;
 
 public class List {
-
+    boolean closed;
     private String id;
     private String name;
-    boolean closed;
     private String idBoard;
 
     public List() {
@@ -25,22 +24,22 @@ public class List {
         return name;
     }
 
-    public boolean isClosed() {
-        return closed;
-    }
-
-    public String getIdBoard() {
-        return idBoard;
-    }
-
     public List setName(String name) {
         this.name = name;
         return this;
     }
 
+    public boolean isClosed() {
+        return closed;
+    }
+
     public List setClosed(boolean closed) {
         this.closed = closed;
         return this;
+    }
+
+    public String getIdBoard() {
+        return idBoard;
     }
 
     public List setIdBoard(String idBoard) {

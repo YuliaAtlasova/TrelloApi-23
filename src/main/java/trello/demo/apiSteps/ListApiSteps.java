@@ -15,7 +15,7 @@ public class ListApiSteps {
         return createListWithName(boardId, name);
     }
 
-    public static List createListWithName(String boardId, String listName){
+    public static List createListWithName(String boardId, String listName) {
         Response resp = ListService
                 .requestBuilder()
                 .setName(listName)
@@ -34,5 +34,4 @@ public class ListApiSteps {
                 .build()
                 .sendRequest();
     }
-
 }

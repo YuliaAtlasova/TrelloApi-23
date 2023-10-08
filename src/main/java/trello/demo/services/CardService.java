@@ -22,6 +22,10 @@ public class CardService extends BaseServiceObject {
         return new CardRequestBuilder();
     }
 
+    public static Card extractCard(Response response) {
+        return extract(response, Card.class);
+    }
+
     public static class CardRequestBuilder extends ApiRequestBuilder<CardRequestBuilder, CardService> {
 
         public CardRequestBuilder setId(String id) {
@@ -53,9 +57,5 @@ public class CardService extends BaseServiceObject {
         public CardService build() {
             return new CardService(cardUrl, method, pathParams, queryParams, queryBody);
         }
-    }
-
-    public static Card extractCard(Response response) {
-        return extract(response, Card.class);
     }
 }

@@ -2,10 +2,8 @@ package trello.demo.services;
 
 import io.restassured.http.Method;
 import io.restassured.response.Response;
-import trello.demo.entities.Board;
 import trello.demo.entities.List;
 
-import java.util.Locale;
 import java.util.Map;
 
 public class ListService extends BaseServiceObject {
@@ -22,6 +20,10 @@ public class ListService extends BaseServiceObject {
 
     public static ListRequestBuilder requestBuilder() {
         return new ListRequestBuilder();
+    }
+
+    public static List extractList(Response response) {
+        return extract(response, List.class);
     }
 
     public static class ListRequestBuilder extends ApiRequestBuilder<ListRequestBuilder, ListService> {
@@ -50,9 +52,5 @@ public class ListService extends BaseServiceObject {
         public ListService build() {
             return new ListService(listUrl, method, pathParams, queryParams, queryBody);
         }
-    }
-
-    public static List extractList(Response response) {
-        return extract(response, List.class);
     }
 }
