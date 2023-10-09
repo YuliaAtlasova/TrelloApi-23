@@ -1,3 +1,4 @@
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,6 +32,7 @@ public class TrelloCardOnListTest extends BaseUiTest {
     }
 
     @Test
+    @DisplayName("TrelloCardShouldShowNotCompletedCheckItems")
     public void TrelloCardShouldShowNotCompletedCheckItems() {
         Card card1 = CardApiSteps.createCardWithName(testList.getId(), "card1");
         loginPage.openPage();
@@ -48,6 +50,7 @@ public class TrelloCardOnListTest extends BaseUiTest {
     }
 
     @Test
+    @DisplayName("TrelloCardShouldShowCompletedCheckItems")
     public void TrelloCardShouldShowCompletedCheckItems() {
         Card card1 = CardApiSteps.createCardWithName(testList.getId(), "card1");
         String checklistId = ChecklistApiSteps.createChecklist(card1.getId()).getId();

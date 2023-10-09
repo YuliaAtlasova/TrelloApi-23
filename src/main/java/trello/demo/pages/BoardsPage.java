@@ -1,5 +1,6 @@
 package trello.demo.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -17,6 +18,7 @@ public class BoardsPage extends BasePage {
         PageFactory.initElements(this.driver, this);
     }
 
+    @Step("openBoardByName {boardName}")
     public OneBoardPage openBoardByName(String boardName) {
         String boardLocator = "//div[@title='" + boardName + "']";
         until(ExpectedConditions.visibilityOfElementLocated(By.xpath(boardLocator)));
@@ -25,6 +27,7 @@ public class BoardsPage extends BasePage {
     }
 
     @Override
+    @Step("Open BoardsPage")
     public BoardsPage openPage() {
         driver.navigate().to(PAGE_URL);
         return this;
