@@ -13,16 +13,12 @@ import java.util.Random;
 public abstract class BaseServiceObject {
 
     private String url;
-    private Method method;
-    private Map<String, String> pathParams;
-    private Map<String, String> queryParams;
-    private Object queryBody;
+    private final Method method;
+    private final Map<String, String> pathParams;
+    private final Map<String, String> queryParams;
+    private final Object queryBody;
 
-    public BaseServiceObject(String url,
-                             Method method,
-                             Map<String, String> pathParams,
-                             Map<String, String> queryParams,
-                             Object body) {
+    public BaseServiceObject(String url, Method method, Map<String, String> pathParams, Map<String, String> queryParams, Object body) {
         this.url = url;
         this.method = method;
         this.pathParams = pathParams;
@@ -36,8 +32,10 @@ public abstract class BaseServiceObject {
 
     public Response sendRequest() {
         queryParams.put("requestId", String.valueOf(new Random().nextLong()));
-        for (String paramName : pathParams.keySet())
-            url = url + '{' + paramName + '}';
+        if (!url.contains("{")) {
+            for (String paramName : pathParams.keySet())
+                url = url + '{' + paramName + '}';
+        }
         return RestAssured
                 .given()
                 .spec(RequestSpecProvider.BASE_SPEC)

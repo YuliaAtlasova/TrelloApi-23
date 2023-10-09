@@ -1,41 +1,51 @@
 package trello.demo.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.util.List;
 
 import static trello.demo.utils.TestData.testData;
 
 public class CardOnListPage extends BasePage {
 
-    private final String PAGE_URL = testData().getProperty("trelloBaseUiUrl") + testData().getProperty("userName") +
-            "/boards";
+    private final String PAGE_URL = testData().getProperty("trelloBaseUiUrl") + testData().getProperty("userName");
+    @FindBy(className = "list-card-title")
+    private WebElement cardName;
+    private final String checkListIconLoc = "//div[contains(@data-testid, 'checklist-badge')]";
+    private final String checkListCompletedLoc = "//div[contains(@class, 'is-complete')]";
 
     public CardOnListPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(this.driver, this);
     }
 
-    public ListOnBoardPage getListByName(String listName) {
-        int listsNumber = getNumberOfListsByName(listName);
-        assert listsNumber == 1;
-        return new ListOnBoardPage(driver);
+    public String getCardName() {
+        until(ExpectedConditions.visibilityOf(cardName));
+        return cardName.getText();
     }
 
-    public int getNumberOfListsByName(String listName) {
-        String listLoc = getListLocator(listName);
-        until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(listLoc)));
-        List<WebElement> lists = driver.findElements(By.xpath(listLoc));
-
-        return lists.size();
+    public boolean isCheckListIconPresent() {
+        try {
+            driver.findElement(By.xpath(checkListIconLoc));
+            System.out.println("Here we are : isCheckListIconPresent - true");
+            return true;
+        } catch (NoSuchElementException ignored) {
+            System.out.println("Here we are : isCheckListIconPresent - false");
+        }
+        return false;
     }
 
-    private String getListLocator(String listName) {
-        return "//div[contains (@class, 'list-header') and textarea[contains(text(), '" + listName + "')]]";
+    public boolean isCheckListCompleted() {
+        try {
+            driver.findElement(By.xpath(checkListCompletedLoc));
+            return true;
+        } catch (NoSuchElementException ignored) {
+        }
+        return false;
     }
 
     @Override

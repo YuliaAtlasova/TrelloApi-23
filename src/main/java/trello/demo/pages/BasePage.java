@@ -18,8 +18,7 @@ public class BasePage {
 
     protected void until(ExpectedCondition condition) {
         try {
-            new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS_SHORT))
-                    .until(condition);
+            new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS_SHORT)).until(condition);
         } catch (AssertionError Ae) {
             Ae.printStackTrace();
         }

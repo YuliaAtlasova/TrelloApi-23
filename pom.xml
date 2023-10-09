@@ -124,8 +124,8 @@
                 <artifactId>allure-maven</artifactId>
                 <version>2.10.0</version>
                 <configuration>
-                    <reportVersion>${allure.version}</reportVersion>
-                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+                    <reportVersion>2.14.0</reportVersion>
+                    <outputDirectory>${project.build.directory}/allure-results</outputDirectory>
                 </configuration>
             </plugin>
             <plugin>

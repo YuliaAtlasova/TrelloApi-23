@@ -15,10 +15,10 @@ public class CardApiSteps {
         return createCardWithName(listId, name);
     }
 
-    public static Card createCardWithName(String listId, String listName) {
+    public static Card createCardWithName(String listId, String cardName) {
         Response response = CardService
                 .requestBuilder()
-                .setName(listName)
+                .setName(cardName)
                 .setListId(listId)
                 .setMethod(Method.POST)
                 .build().sendRequest();

@@ -28,7 +28,29 @@ public class Card {
     public String shortUrl;
     public boolean subscribed;
     public String url;
-//    public ArrayList<IdChecklist> idChecklists;
-//    public Limits limits;
-//    public ArrayList<IdLabel> idLabels;
+
+    public Card(String id, String name, String desc, boolean closed) {
+        this.id = id;
+        this.name = name;
+        this.desc = desc;
+        this.closed = closed;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public Card setId(String id) {
+        this.id = id;
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Card setName(String name) {
+        this.name = name;
+        return this;
+    }
 }
