@@ -1,5 +1,6 @@
 package trello.demo.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -28,6 +29,7 @@ public class CardOnListPage extends BasePage {
         return cardName.getText();
     }
 
+    @Step("isCheckListIconPresent")
     public boolean isCheckListIconPresent() {
         try {
             driver.findElement(By.xpath(checkListIconLoc));
@@ -49,6 +51,7 @@ public class CardOnListPage extends BasePage {
     }
 
     @Override
+    @Step("openPage CardOnListPage")
     public CardOnListPage openPage() {
         driver.navigate().to(PAGE_URL);
         return this;

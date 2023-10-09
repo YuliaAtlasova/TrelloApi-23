@@ -1,5 +1,7 @@
 package trello.demo.pages;
 
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,6 +21,8 @@ public class ListOnBoardPage extends BasePage {
         PageFactory.initElements(this.driver, this);
     }
 
+    @Attachment
+    @Step("getCardOnList")
     public CardOnListPage getCardOnList(String cardName) {
         until(ExpectedConditions.visibilityOf(cardNameElement));
         until(ExpectedConditions.textToBePresentInElement(cardNameElement, cardName));
@@ -26,6 +30,7 @@ public class ListOnBoardPage extends BasePage {
     }
 
     @Override
+    @Step("openPage ListOnBoardPage")
     public ListOnBoardPage openPage() {
         driver.navigate().to(PAGE_URL);
         return this;

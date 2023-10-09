@@ -1,3 +1,4 @@
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,6 +33,7 @@ public class TrelloListTest extends BaseUiTest {
     }
 
     @Test
+    @DisplayName("longListNameShouldBeVisible")
     public void longListNameShouldBeVisible() {
         String longName = randomAlphanumeric(512);
         testList = ListApiSteps.createListWithName(testBoard.getId(), longName);
@@ -48,6 +50,7 @@ public class TrelloListTest extends BaseUiTest {
     }
 
     @Test
+    @DisplayName("listNameCanBeUsedForSeveralLists")
     public void listNameCanBeUsedForSeveralLists() {
         String listName = randomAlphanumeric(15);
         testList = ListApiSteps.createListWithName(testBoard.getId(), listName);

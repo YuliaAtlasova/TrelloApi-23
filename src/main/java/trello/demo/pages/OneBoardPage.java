@@ -1,5 +1,7 @@
 package trello.demo.pages;
 
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,6 +22,12 @@ public class OneBoardPage extends BasePage {
         PageFactory.initElements(this.driver, this);
     }
 
+    private String getListLocator(String listName) {
+        return "//div[contains (@class, 'list-header') and textarea[contains(text(), '" + listName + "')]]";
+    }
+
+    @Attachment
+    @Step("getListByName")
     public ListOnBoardPage getListByName(String listName) {
         int listsNumber = getNumberOfListsByName(listName);
         assert listsNumber == 1;
@@ -27,6 +35,8 @@ public class OneBoardPage extends BasePage {
         return new ListOnBoardPage(driver);
     }
 
+    @Attachment
+    @Step("getNumberOfListsByName")
     public int getNumberOfListsByName(String listName) {
         String listLoc = getListLocator(listName);
         until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(listLoc)));
@@ -35,11 +45,8 @@ public class OneBoardPage extends BasePage {
         return lists.size();
     }
 
-    private String getListLocator(String listName) {
-        return "//div[contains (@class, 'list-header') and textarea[contains(text(), '" + listName + "')]]";
-    }
-
     @Override
+    @Step("openPage OneBoardPage")
     public OneBoardPage openPage() {
         driver.navigate().to(PAGE_URL);
         return this;

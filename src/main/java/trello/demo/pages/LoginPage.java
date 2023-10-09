@@ -1,5 +1,6 @@
 package trello.demo.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,11 +31,13 @@ public class LoginPage extends BasePage {
     }
 
     @Override
+    @Step("openPage")
     public LoginPage openPage() {
         driver.navigate().to(PAGE_URL);
         return this;
     }
 
+    @Step("Login by {username}")
     public BoardsPage login(String username, String password) {
         inputLogin.sendKeys(username);
         usernameSubmit.click();

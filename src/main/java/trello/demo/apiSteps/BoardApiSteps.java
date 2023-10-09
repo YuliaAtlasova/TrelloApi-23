@@ -1,5 +1,7 @@
 package trello.demo.apiSteps;
 
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.http.Method;
@@ -19,6 +21,8 @@ public class BoardApiSteps {
 
     public static final String ALL_BOARDS_URL = "/members/me/boards";
 
+    @Attachment
+    @Step("createBoard")
     public static Board createBoard() {
         Response response = BoardService
                 .requestBuilder()
@@ -30,6 +34,8 @@ public class BoardApiSteps {
         return BoardService.extractBoard(response);
     }
 
+    @Attachment
+    @Step("createBoard")
     public static Board getBoard(String boardId) {
         Response response = BoardService
                 .requestBuilder()
@@ -39,6 +45,7 @@ public class BoardApiSteps {
         return BoardService.extractBoard(response);
     }
 
+    @Step("deleteBoard")
     public static void deleteBoard(String boardId) {
         Response response = BoardService
                 .requestBuilder()
@@ -48,6 +55,8 @@ public class BoardApiSteps {
         response.then().spec(successJsonResponse());
     }
 
+    @Attachment
+    @Step("getAllBoards")
     public static List<Board> getAllBoards() {
         return RestAssured
                 .given()
@@ -58,6 +67,7 @@ public class BoardApiSteps {
                 });
     }
 
+    @Step("deleteAllBoards")
     public static void deleteAllBoards() {
         getAllBoards().forEach(b -> deleteBoard(b.getId()));
     }
