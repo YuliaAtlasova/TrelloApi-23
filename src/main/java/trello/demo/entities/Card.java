@@ -53,4 +53,13 @@ public class Card {
         this.name = name;
         return this;
     }
+
+    public String toString() {
+        return "Card{"
+                + "id='" + id + '\''
+                + ", name='" + name + '\''
+                + ", desc='" + desc + '\''
+                + ", closed=" + closed
+                + '}';
+    }
 }

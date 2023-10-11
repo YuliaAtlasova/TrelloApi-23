@@ -26,13 +26,13 @@ public class TrelloCardOnListTest extends BaseUiTest {
     }
 
     @After
-    public void deleteAllBoards() {
+    public void deleteTestBoard() {
         DriverSingleton.closeDriver();
         BoardApiSteps.deleteBoard(testBoard.getId());
     }
 
     @Test
-    @DisplayName("TrelloCardShouldShowNotCompletedCheckItems")
+    @DisplayName("Trello Card Should Show Not Completed CheckItems")
     public void TrelloCardShouldShowNotCompletedCheckItems() {
         Card card1 = CardApiSteps.createCardWithName(testList.getId(), "card1");
         loginPage.openPage();
@@ -50,7 +50,7 @@ public class TrelloCardOnListTest extends BaseUiTest {
     }
 
     @Test
-    @DisplayName("TrelloCardShouldShowCompletedCheckItems")
+    @DisplayName("Trello Card Should Show Completed CheckItems")
     public void TrelloCardShouldShowCompletedCheckItems() {
         Card card1 = CardApiSteps.createCardWithName(testList.getId(), "card1");
         String checklistId = ChecklistApiSteps.createChecklist(card1.getId()).getId();

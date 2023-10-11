@@ -1,5 +1,6 @@
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import trello.demo.driver.DriverSingleton;
 
@@ -18,5 +19,10 @@ public class BaseUiTest {
     @After
     public void tearDown() {
         DriverSingleton.closeDriver();
+    }
+
+    @Test
+    public void mockTest(){
+        System.out.println("here we are");
     }
 }

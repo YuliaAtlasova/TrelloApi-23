@@ -21,7 +21,6 @@ public class ListOnBoardPage extends BasePage {
         PageFactory.initElements(this.driver, this);
     }
 
-    @Attachment
     @Step("getCardOnList")
     public CardOnListPage getCardOnList(String cardName) {
         until(ExpectedConditions.visibilityOf(cardNameElement));

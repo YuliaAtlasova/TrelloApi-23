@@ -33,10 +33,8 @@ public class CardOnListPage extends BasePage {
     public boolean isCheckListIconPresent() {
         try {
             driver.findElement(By.xpath(checkListIconLoc));
-            System.out.println("Here we are : isCheckListIconPresent - true");
             return true;
         } catch (NoSuchElementException ignored) {
-            System.out.println("Here we are : isCheckListIconPresent - false");
         }
         return false;
     }

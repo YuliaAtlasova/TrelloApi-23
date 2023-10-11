@@ -1,5 +1,6 @@
 package trello.demo.specifications;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 
@@ -11,7 +12,8 @@ public class RequestSpecProvider {
             .addHeader("Content-Type", "application/json; charset=utf-8")
             .addQueryParam("key", testData().getProperty("apiKey"))
             .addQueryParam("token", testData().getProperty("apiToken"))
-            .build();
+            .build()
+            .filter(new AllureRestAssured());
 
     private RequestSpecProvider() {
     }

@@ -1,5 +1,6 @@
 package trello.demo.apiSteps;
 
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
@@ -17,6 +18,7 @@ public class CardApiSteps {
         return createCardWithName(listId, name);
     }
 
+    @Attachment
     @Step("createCardWithName {cardName}")
     public static Card createCardWithName(String listId, String cardName) {
         Response response = CardService

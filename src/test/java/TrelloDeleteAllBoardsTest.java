@@ -5,7 +5,7 @@ import trello.demo.apiSteps.BoardApiSteps;
 public class TrelloDeleteAllBoardsTest extends BaseUiTest {
 
     @Test
-    @DisplayName("JustDeleteAllBoards")
+    @DisplayName("Just Delete All Boards")
     public void JustDeleteAllBoards() {
         BoardApiSteps.deleteAllBoards();
     }

@@ -22,7 +22,6 @@ public class ChecklistApiSteps {
     @Attachment
     @Step("createChecklistWithName")
     public static Checklist createChecklistWithName(String cardId, String checklistName) {
-        System.out.println("Here we are 111 createChecklistWithName");
         Response resp = ChecklistService.requestBuilder().setName(checklistName).setCardId(cardId).setMethod(Method.POST).build().sendRequest();
         resp.then().spec(successJsonResponse());
         return ChecklistService.extractChecklist(resp);

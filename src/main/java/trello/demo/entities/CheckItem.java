@@ -35,4 +35,12 @@ public class CheckItem {
         this.idChecklist = idChecklist;
         return this;
     }
+
+    public String toString() {
+        return "Board{"
+                + "id='" + id + '\''
+                + ", name='" + name + '\''
+                + ", idChecklist='" + idChecklist + '\''
+                + '}';
+    }
 }

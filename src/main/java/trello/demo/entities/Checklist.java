@@ -13,10 +13,11 @@ public class Checklist {
     public Checklist() {
     }
 
-    public Checklist(String id, String name, String idBoard) {
+    public Checklist(String id, String name, String idBoard, String idCard) {
         this.id = id;
         this.name = name;
-        this.idCard = idBoard;
+        this.idCard = idCard;
+        this.idBoard = idBoard;
     }
 
     public String getId() {
@@ -39,5 +40,14 @@ public class Checklist {
     public Checklist setIdCard(String idBoard) {
         this.idCard = idBoard;
         return this;
+    }
+
+    public String toString() {
+        return "Board{"
+                + "id='" + id + '\''
+                + ", name='" + name + '\''
+                + ", idBoard='" + idBoard + '\''
+                + ", idCard=" + idCard
+                + '}';
     }
 }

@@ -46,4 +46,14 @@ public class List {
         this.idBoard = idBoard;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "List{"
+                + "id='" + id + '\''
+                + ", name='" + name + '\''
+                + ", idBoard='" + idBoard + '\''
+                + ", closed=" + closed
+                + '}';
+    }
 }

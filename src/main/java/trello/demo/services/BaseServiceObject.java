@@ -5,6 +5,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import trello.demo.specifications.RequestSpecProvider;
+import trello.demo.utils.LogUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,15 +37,17 @@ public abstract class BaseServiceObject {
             for (String paramName : pathParams.keySet())
                 url = url + '{' + paramName + '}';
         }
-        return RestAssured
+        Response resp = RestAssured
                 .given()
                 .spec(RequestSpecProvider.BASE_SPEC)
                 .pathParams(pathParams)
                 .queryParams(queryParams)
                 .body(queryBody)
-                .log().all()
+                .log().method().log().uri().log().parameters().log().body()
                 .request(method, url)
                 .prettyPeek();
+        LogUtils.logApiResponse(resp.asString());
+        return resp;
     }
 
     @SuppressWarnings("unchecked")

@@ -19,7 +19,7 @@ import static trello.demo.specifications.ResponseSpecProvider.successJsonRespons
 
 public class BoardApiSteps {
 
-    public static final String ALL_BOARDS_URL = "/members/me/boards";
+    public static final String ALL_BOARDS_URL = "/members/me/?fields=all";
 
     @Attachment
     @Step("createBoard")
@@ -35,7 +35,7 @@ public class BoardApiSteps {
     }
 
     @Attachment
-    @Step("createBoard")
+    @Step("getBoard")
     public static Board getBoard(String boardId) {
         Response response = BoardService
                 .requestBuilder()
@@ -57,18 +57,17 @@ public class BoardApiSteps {
 
     @Attachment
     @Step("getAllBoards")
-    public static List<Board> getAllBoards() {
+    public static List<String> getAllBoards() {
         return RestAssured
                 .given()
                 .spec(RequestSpecProvider.BASE_SPEC)
                 .when()
                 .get(ALL_BOARDS_URL)
-                .as(new TypeRef<List<Board>>() {
-                });
+                .then().extract().path("idBoards");
     }
 
     @Step("deleteAllBoards")
     public static void deleteAllBoards() {
-        getAllBoards().forEach(b -> deleteBoard(b.getId()));
+        getAllBoards().forEach(BoardApiSteps::deleteBoard);
     }
 }

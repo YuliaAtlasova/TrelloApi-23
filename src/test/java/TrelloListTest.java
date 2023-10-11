@@ -27,13 +27,13 @@ public class TrelloListTest extends BaseUiTest {
     }
 
     @After
-    public void deleteAllBoards() {
+    public void deleteTestBoard() {
         DriverSingleton.closeDriver();
         BoardApiSteps.deleteBoard(testBoard.getId());
     }
 
     @Test
-    @DisplayName("longListNameShouldBeVisible")
+    @DisplayName("long List Name Should Be Visible")
     public void longListNameShouldBeVisible() {
         String longName = randomAlphanumeric(512);
         testList = ListApiSteps.createListWithName(testBoard.getId(), longName);
@@ -50,7 +50,7 @@ public class TrelloListTest extends BaseUiTest {
     }
 
     @Test
-    @DisplayName("listNameCanBeUsedForSeveralLists")
+    @DisplayName("list Name Can Be Used For Several Lists")
     public void listNameCanBeUsedForSeveralLists() {
         String listName = randomAlphanumeric(15);
         testList = ListApiSteps.createListWithName(testBoard.getId(), listName);

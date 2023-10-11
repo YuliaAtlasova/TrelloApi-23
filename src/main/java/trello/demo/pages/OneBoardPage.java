@@ -1,6 +1,5 @@
 package trello.demo.pages;
 
-import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -26,7 +25,6 @@ public class OneBoardPage extends BasePage {
         return "//div[contains (@class, 'list-header') and textarea[contains(text(), '" + listName + "')]]";
     }
 
-    @Attachment
     @Step("getListByName")
     public ListOnBoardPage getListByName(String listName) {
         int listsNumber = getNumberOfListsByName(listName);
@@ -35,7 +33,6 @@ public class OneBoardPage extends BasePage {
         return new ListOnBoardPage(driver);
     }
 
-    @Attachment
     @Step("getNumberOfListsByName")
     public int getNumberOfListsByName(String listName) {
         String listLoc = getListLocator(listName);

@@ -25,13 +25,11 @@ public class ChecklistService extends BaseServiceObject {
     public static class ChecklistRequestBuilder extends ApiRequestBuilder<ChecklistRequestBuilder, ChecklistService> {
 
         public ChecklistRequestBuilder setCardId(String cardId) {
-            System.out.println("Here we are 333 ChecklistRequestBuilder setCardId");
             addQueryParam("idCard", cardId);
             return this;
         }
 
         public ChecklistRequestBuilder setName(String name) {
-            System.out.println("Here we are 222 ChecklistRequestBuilder setCardId");
             addQueryParam("name", name);
             return this;
         }
@@ -43,7 +41,6 @@ public class ChecklistService extends BaseServiceObject {
 
         @Override
         public ChecklistService build() {
-            System.out.println("Here we are 444 ChecklistService build: url=" + ChecklistUrl);
             return new ChecklistService(ChecklistUrl, method, pathParams, queryParams, queryBody);
         }
     }
