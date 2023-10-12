@@ -6,6 +6,7 @@ import trello.demo.apiSteps.*;
 import trello.demo.driver.DriverSingleton;
 import trello.demo.entities.Board;
 import trello.demo.entities.Card;
+import trello.demo.entities.Checklist;
 import trello.demo.entities.List;
 import trello.demo.pages.*;
 
@@ -16,12 +17,16 @@ public class TrelloCardOnListTest extends BaseUiTest {
 
     Board testBoard;
     List testList;
+    Card testCard;
+    Checklist testChecklist;
     LoginPage loginPage;
 
     @Before
     public void createBoardAndList() {
         testBoard = BoardApiSteps.createBoard();
         testList = ListApiSteps.createList(testBoard.getId());
+        testCard = CardApiSteps.createCardWithName(testList.getId(), "card1");
+        testChecklist = ChecklistApiSteps.createChecklist(testCard.getId());
         loginPage = new LoginPage(driver);
     }
 
@@ -34,32 +39,25 @@ public class TrelloCardOnListTest extends BaseUiTest {
     @Test
     @DisplayName("Trello Card Should Show Not Completed CheckItems")
     public void TrelloCardShouldShowNotCompletedCheckItems() {
-        Card card1 = CardApiSteps.createCardWithName(testList.getId(), "card1");
+        CheckItemApiSteps.createNotCompletedCheckItem(testChecklist.getId());
         loginPage.openPage();
         BoardsPage boards = loginPage.login(LOGIN, PASSWORD);
         OneBoardPage oneBoard = boards.openBoardByName(testBoard.getName());
         ListOnBoardPage myList = oneBoard.getListByName(testList.getName());
-        CardOnListPage myCardBefore = myList.getCardOnList(card1.getName());
-        assertFalse(myCardBefore.isCheckListIconPresent());
-        String checklistId = ChecklistApiSteps.createChecklist(card1.getId()).getId();
-        CheckItemApiSteps.createNotCompletedCheckItem(checklistId);
-        driver.navigate().refresh();
-        CardOnListPage myCardAfter = myList.getCardOnList(card1.getName());
-        assertTrue(myCardAfter.isCheckListIconPresent());
-        assertFalse(myCardAfter.isCheckListCompleted());
+        CardOnListPage myCard = myList.getCardOnList(testCard.getName());
+        assertTrue(myCard.isCheckListIconPresent());
+        assertFalse(myCard.isCheckListCompleted());
     }
 
     @Test
     @DisplayName("Trello Card Should Show Completed CheckItems")
     public void TrelloCardShouldShowCompletedCheckItems() {
-        Card card1 = CardApiSteps.createCardWithName(testList.getId(), "card1");
-        String checklistId = ChecklistApiSteps.createChecklist(card1.getId()).getId();
-        CheckItemApiSteps.createCompletedCheckItem(checklistId);
+        CheckItemApiSteps.createCompletedCheckItem(testChecklist.getId());
         loginPage.openPage();
         BoardsPage boards = loginPage.login(LOGIN, PASSWORD);
         CardOnListPage myCard = boards.openBoardByName(testBoard.getName())
                 .getListByName(testList.getName())
-                .getCardOnList(card1.getName());
+                .getCardOnList(testCard.getName());
         assertTrue(myCard.isCheckListIconPresent());
         assertTrue(myCard.isCheckListCompleted());
     }

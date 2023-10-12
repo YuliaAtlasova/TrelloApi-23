@@ -14,7 +14,4 @@ public class RequestSpecProvider {
             .addQueryParam("token", testData().getProperty("apiToken"))
             .build()
             .filter(new AllureRestAssured());
-
-    private RequestSpecProvider() {
-    }
 }

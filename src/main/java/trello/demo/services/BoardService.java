@@ -34,11 +34,6 @@ public class BoardService extends BaseServiceObject {
             return this;
         }
 
-        public BoardRequestBuilder setQueryId(String id) {
-            addQueryParam("id", id);
-            return this;
-        }
-
         public BoardRequestBuilder setName(String name) {
             addQueryParam("name", name);
             return this;
