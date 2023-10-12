@@ -30,18 +30,16 @@ public class LoginPage extends BasePage {
         PageFactory.initElements(this.driver, this);
     }
 
-    @Override
     @Step("openPage")
-    public LoginPage openPage() {
+    public void openPage() {
         driver.navigate().to(PAGE_URL);
-        return this;
     }
 
     @Step("Login by {username}")
     public BoardsPage login(String username, String password) {
         inputLogin.sendKeys(username);
         usernameSubmit.click();
-        until(ExpectedConditions.visibilityOf(inputPassword));
+        longWait().until(ExpectedConditions.visibilityOf(inputPassword));
         inputPassword.sendKeys(password);
         loginSubmit.click();
         return new BoardsPage(driver);

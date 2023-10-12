@@ -9,12 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
-import static trello.demo.utils.TestData.testData;
-
 public class OneBoardPage extends BasePage {
-
-    private final String PAGE_URL = testData().getProperty("trelloBaseUiUrl") + testData().getProperty("userName") +
-            "/boards";
 
     public OneBoardPage(WebDriver driver) {
         super(driver);
@@ -29,23 +24,16 @@ public class OneBoardPage extends BasePage {
     public ListOnBoardPage getListByName(String listName) {
         int listsNumber = getNumberOfListsByName(listName);
         assert listsNumber == 1;
-        WebElement list = driver.findElement(By.xpath(getListLocator(listName)));
+        driver.findElement(By.xpath(getListLocator(listName)));
         return new ListOnBoardPage(driver);
     }
 
     @Step("getNumberOfListsByName")
     public int getNumberOfListsByName(String listName) {
         String listLoc = getListLocator(listName);
-        until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(listLoc)));
+        longWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(listLoc)));
         List<WebElement> lists = driver.findElements(By.xpath(listLoc));
 
         return lists.size();
-    }
-
-    @Override
-    @Step("openPage OneBoardPage")
-    public OneBoardPage openPage() {
-        driver.navigate().to(PAGE_URL);
-        return this;
     }
 }
