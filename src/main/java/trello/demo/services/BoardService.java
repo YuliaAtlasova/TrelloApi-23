@@ -44,11 +44,6 @@ public class BoardService extends BaseServiceObject {
             return this;
         }
 
-        public BoardRequestBuilder setClosed(boolean closed) {
-            addQueryParam("closed", String.valueOf(closed));
-            return this;
-        }
-
         public BoardRequestBuilder setDesc(String desc) {
             addQueryParam("desc", desc);
             return this;

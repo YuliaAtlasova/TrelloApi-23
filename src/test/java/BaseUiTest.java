@@ -24,6 +24,5 @@ public class BaseUiTest {
     @Test
     public void mockTest(){
         System.out.println("here we are");
-        System.out.println("here we are");
     }
 }

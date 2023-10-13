@@ -43,7 +43,7 @@ public abstract class BaseServiceObject {
                 .pathParams(pathParams)
                 .queryParams(queryParams)
                 .body(queryBody)
-                .log().method().log().uri().log().parameters().log().body()
+                .log().all()
                 .request(method, url)
                 .prettyPeek();
         LogUtils.logApiResponse(resp.asString());
