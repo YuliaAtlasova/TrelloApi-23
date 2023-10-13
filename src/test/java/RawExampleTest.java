@@ -3,6 +3,8 @@ import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import org.junit.Test;
+import trello.demo.apiSteps.BoardApiSteps;
+import trello.demo.apiSteps.ListApiSteps;
 import trello.demo.entities.Board;
 import trello.demo.entities.Colors;
 import trello.demo.entities.List;
@@ -118,6 +120,15 @@ public class RawExampleTest extends BaseUiTest{
                 .build().sendRequest();
         response2.then().spec(successJsonResponse());
         validateListName(testBoard.getName(), longListName);
+    }
+
+    @Test
+    @DisplayName("long List Name Should Be Visible (Final Version)")
+    public void longListNameShouldBeVisibleFinalVersion() {
+        Board testBoard = BoardApiSteps.createBoard();
+        String longListName = randomAlphanumeric(512);
+        List testList = ListApiSteps.createListWithName(testBoard.getId(), longListName);
+        validateListName(testBoard.getName(), testList.getName());
     }
 
     private void validateListName(String boardName, String listName){
