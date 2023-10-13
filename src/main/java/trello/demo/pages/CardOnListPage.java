@@ -1,8 +1,6 @@
 package trello.demo.pages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,10 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 
 public class CardOnListPage extends BasePage {
 
-    @FindBy(className = "list-card-title")
-    private WebElement cardName;
     private final String checkListIconLoc = "//div[contains(@data-testid, 'checklist-badge')]";
     private final String checkListCompletedLoc = "//div[contains(@class, 'is-complete')]";
+    @FindBy(className = "list-card-title")
+    private WebElement cardName;
 
     public CardOnListPage(WebDriver driver) {
         super(driver);
@@ -22,20 +20,11 @@ public class CardOnListPage extends BasePage {
 
     @Step("isCheckListIconPresent")
     public boolean isCheckListIconPresent() {
-        try {
-            driver.findElement(By.xpath(checkListIconLoc));
-            return true;
-        } catch (NoSuchElementException ignored) {
-        }
-        return false;
+        return isElementExists(checkListIconLoc);
     }
 
+    @Step("isCheckListCompleted")
     public boolean isCheckListCompleted() {
-        try {
-            driver.findElement(By.xpath(checkListCompletedLoc));
-            return true;
-        } catch (NoSuchElementException ignored) {
-        }
-        return false;
+        return isElementExists(checkListCompletedLoc);
     }
 }

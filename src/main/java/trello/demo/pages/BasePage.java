@@ -1,5 +1,7 @@
 package trello.demo.pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,7 +15,16 @@ public class BasePage {
         this.driver = driver;
     }
 
-    protected WebDriverWait longWait(){
+    protected WebDriverWait longWait() {
         return new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS_LONG));
+    }
+
+    protected boolean isElementExists(String xpath) {
+        try {
+            driver.findElement(By.xpath(xpath));
+            return true;
+        } catch (NoSuchElementException ignored) {
+        }
+        return false;
     }
 }
