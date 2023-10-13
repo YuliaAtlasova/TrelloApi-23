@@ -20,9 +20,4 @@ public class BaseUiTest {
     public void tearDown() {
         DriverSingleton.closeDriver();
     }
-
-    @Test
-    public void mockTest(){
-        System.out.println("here we are");
-    }
 }
