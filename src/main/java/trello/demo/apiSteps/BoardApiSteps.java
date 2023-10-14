@@ -3,7 +3,6 @@ package trello.demo.apiSteps;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
-import io.restassured.common.mapper.TypeRef;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import trello.demo.entities.Board;

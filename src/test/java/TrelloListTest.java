@@ -13,6 +13,8 @@ import trello.demo.pages.OneBoardPage;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
 import static org.junit.Assert.assertEquals;
+import static trello.demo.utils.TestData.LOGIN;
+import static trello.demo.utils.TestData.PASSWORD;
 
 public class TrelloListTest extends BaseUiTest {
 

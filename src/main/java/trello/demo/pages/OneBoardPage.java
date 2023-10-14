@@ -33,7 +33,6 @@ public class OneBoardPage extends BasePage {
         String listLoc = getListLocator(listName);
         longWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(listLoc)));
         List<WebElement> lists = driver.findElements(By.xpath(listLoc));
-
         return lists.size();
     }
 }

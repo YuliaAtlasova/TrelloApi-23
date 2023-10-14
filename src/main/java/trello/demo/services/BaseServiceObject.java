@@ -13,11 +13,11 @@ import java.util.Random;
 
 public abstract class BaseServiceObject {
 
-    private String url;
     private final Method method;
     private final Map<String, String> pathParams;
     private final Map<String, String> queryParams;
     private final Object queryBody;
+    private String url;
 
     public BaseServiceObject(String url, Method method, Map<String, String> pathParams, Map<String, String> queryParams, Object body) {
         this.url = url;

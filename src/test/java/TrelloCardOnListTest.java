@@ -12,6 +12,8 @@ import trello.demo.pages.*;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static trello.demo.utils.TestData.LOGIN;
+import static trello.demo.utils.TestData.PASSWORD;
 
 public class TrelloCardOnListTest extends BaseUiTest {
 

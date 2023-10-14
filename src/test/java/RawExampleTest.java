@@ -1,3 +1,4 @@
+import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
@@ -19,9 +20,9 @@ import trello.demo.utils.EnumUtils;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
 import static org.junit.Assert.assertEquals;
 import static trello.demo.specifications.ResponseSpecProvider.successJsonResponse;
-import static trello.demo.utils.TestData.testData;
+import static trello.demo.utils.TestData.*;
 
-public class RawExampleTest extends BaseUiTest{
+public class RawExampleTest extends BaseUiTest {
 
     @Test
     @DisplayName("long List Name Should Be Visible (Raw Version 1)")
@@ -131,7 +132,8 @@ public class RawExampleTest extends BaseUiTest{
         validateListName(testBoard.getName(), testList.getName());
     }
 
-    private void validateListName(String boardName, String listName){
+    @Step("validateListName boardName:{boardName}, listName:{listName}")
+    private void validateListName(String boardName, String listName) {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.openPage();
         BoardsPage boards = loginPage.login(LOGIN, PASSWORD);
