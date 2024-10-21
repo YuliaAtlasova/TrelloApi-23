@@ -25,7 +25,7 @@ import static trello.demo.utils.TestData.*;
 public class RawExampleTest extends BaseUiTest {
 
     @Test
-    @DisplayName("long List Name Should Be Visible (Raw Version 1)")
+    @DisplayName("Long List Name Should Be Visible (Raw Version 1)")
     public void longListNameShouldBeVisibleRawVersion1() {
         String boardName = randomAlphanumeric(20);
         Response response1 = RestAssured.given()
@@ -54,7 +54,7 @@ public class RawExampleTest extends BaseUiTest {
     }
 
     @Test
-    @DisplayName("long List Name Should Be Visible (Raw Version 2)")
+    @DisplayName("Long List Name Should Be Visible (Raw Version 2)")
     public void longListNameShouldBeVisibleRawVersion2() {
         String boardName = randomAlphanumeric(20);
         Response response1 = RestAssured.given()
@@ -77,7 +77,7 @@ public class RawExampleTest extends BaseUiTest {
     }
 
     @Test
-    @DisplayName("long List Name Should Be Visible (Raw Version 3)")
+    @DisplayName("Long List Name Should Be Visible (Raw Version 3)")
     public void longListNameShouldBeVisibleRawVersion3() {
         String boardName = randomAlphanumeric(20);
         Response response1 = RestAssured.given()
@@ -101,7 +101,7 @@ public class RawExampleTest extends BaseUiTest {
     }
 
     @Test
-    @DisplayName("long List Name Should Be Visible (Raw Version 4)")
+    @DisplayName("Long List Name Should Be Visible (Raw Version 4)")
     public void longListNameShouldBeVisibleRawVersion4() {
         Response response1 = BoardService
                 .requestBuilder()
@@ -124,7 +124,7 @@ public class RawExampleTest extends BaseUiTest {
     }
 
     @Test
-    @DisplayName("long List Name Should Be Visible (Final Version)")
+    @DisplayName("Long List Name Should Be Visible (Final Version)")
     public void longListNameShouldBeVisibleFinalVersion() {
         Board testBoard = BoardApiSteps.createBoard();
         String longListName = randomAlphanumeric(512);
